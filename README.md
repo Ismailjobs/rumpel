@@ -102,6 +102,13 @@ From project root: `npm run build`
 
    **Form artık her zaman aynı origin üzerinden gider:** Tarayıcı `POST /api/contact` (Next.js) yapar; Docker’da Next.js bu isteği `USE_BACKEND_PROXY=true` ve `INTERNAL_API_URL=http://server:4000` ile Express backend’e proxy eder. Böylece `localhost`/IP sorunu kalmaz. Sunucuda `server/.env` (BREVO, HCAPTCHA) tanımlı olsun; `env_file: - ./server/.env` ile yüklenir.
 
+   **Hata: `KeyError: 'ContainerConfig'` (docker-compose 1.29.x):** Eski docker-compose bazen mevcut container’ı “recreate” ederken bu hatayı verir. **Çözüm 1** – Container’ları kaldırıp yeniden oluşturun:
+   ```bash
+   docker-compose down
+   docker-compose up -d --build
+   ```
+   Hata sürerse client image’ı da silin: `docker rmi rumpel_client 2>/dev/null; docker-compose up -d --build` (image adı `docker images` ile kontrol edin). **Çözüm 2** – Docker Compose V2 kullanın: `docker compose up -d --build` (tire yok).
+
 5. **Kontrol**
 
    - `https://objektraeumung.at/robots.txt` ve `https://objektraeumung.at/sitemap.xml` (veya locale’li sitemap) açılıyor mu?
