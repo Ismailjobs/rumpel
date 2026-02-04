@@ -15,7 +15,6 @@ const navLinks = [
   { key: "referenzen", href: "/referenzen" },
   { key: "ueberblick", href: "/ueberblick" },
   { key: "prices", href: "/prices" },
-  { key: "impressum", href: "/impressum" },
   { key: "contact", href: "/#contact" },
 ];
 
@@ -64,17 +63,7 @@ export function Header() {
           </Link>
         </div>
 
-        <div className="md:hidden flex-1 flex items-center justify-center min-w-0 pl-2">
-          <a
-            href={`tel:${PHONE_LINK}`}
-            className="inline-flex items-center gap-2 text-white font-medium text-sm whitespace-nowrap hover:text-accent transition -translate-x-2"
-          >
-            <Phone size={18} />
-            {t("callNow")}
-          </a>
-        </div>
-
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((item) => {
             if (item.key === "services" && "hasDropdown" in item && item.hasDropdown) {
               return (
@@ -149,7 +138,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <div className="flex rounded overflow-hidden border border-white/20">
             {routing.locales.map((loc) => {
               const path = pathname === "/" ? "" : pathname;
@@ -180,7 +169,7 @@ export function Header() {
 
         <button
           type="button"
-          className="md:hidden text-white p-2"
+          className="lg:hidden text-white p-2"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Menü schließen" : "Menü öffnen"}
         >
@@ -194,7 +183,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-navy border-t border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto"
+            className="lg:hidden bg-navy border-t border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             <nav className="px-4 py-4 flex flex-col gap-3">
               <Link href="/" onClick={() => setOpen(false)} className="text-white/90 hover:text-accent font-medium py-2">
@@ -249,9 +238,6 @@ export function Header() {
               </Link>
               <Link href="/prices" onClick={() => setOpen(false)} className="text-white/90 hover:text-accent font-medium py-2">
                 {t("prices")}
-              </Link>
-              <Link href="/impressum" onClick={() => setOpen(false)} className="text-white/90 hover:text-accent font-medium py-2">
-                {t("impressum")}
               </Link>
               <Link href="/#contact" onClick={() => setOpen(false)} className="text-white/90 hover:text-accent font-medium py-2">
                 {t("contact")}
