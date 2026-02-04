@@ -100,11 +100,22 @@ From project root: `npm run build`
    - `server` → `CLIENT_ORIGIN=https://objektraeumung.at`
    - `client` build arg / env → `NEXT_PUBLIC_SITE_URL` ve `NEXT_PUBLIC_API_URL` production değerleriyle verin.
 
+   **Form artık her zaman aynı origin üzerinden gider:** Tarayıcı `POST /api/contact` (Next.js) yapar; Docker’da Next.js bu isteği `USE_BACKEND_PROXY=true` ve `INTERNAL_API_URL=http://server:4000` ile Express backend’e proxy eder. Böylece `localhost`/IP sorunu kalmaz. Sunucuda `server/.env` (BREVO, HCAPTCHA) tanımlı olsun; `env_file: - ./server/.env` ile yüklenir.
+
 5. **Kontrol**
 
    - `https://objektraeumung.at/robots.txt` ve `https://objektraeumung.at/sitemap.xml` (veya locale’li sitemap) açılıyor mu?
    - Kontaktformular: Backend’e istek gidiyor mu, e-posta geliyor mu?
    - Favicon: `/favicon.ico` 200 dönüyor mu?
+
+### Form gönderimi / MongoDB logları
+
+- **MongoDB logları (Connection accepted, Connection not authenticating, Connection ended)** hata değildir. Bunlar MongoDB’nin normal bilgi loglarıdır; backend MongoDB’ye bağlanıp işlem yaptığında bu mesajlar yazılır.
+- **Form gerçekten hata veriyorsa** kontrol edin:
+  - **Tarayıcı**: F12 → Network sekmesinde form submit’e tıklayın; `POST .../api/contact` isteği kırmızı mı (failed), status kodu ne? Console’da CORS veya başka hata var mı?
+  - **Production’da API adresi**: Site `https://objektraeumung.at` üzerinden açılıyorsa, tarayıcıdaki JavaScript `NEXT_PUBLIC_API_URL` ile backend’e istek atar. Bu değer tarayıcının erişebileceği bir adres olmalı (örn. `https://objektraeumung.at` üzerinden reverse proxy ile `/api` backend’e yönlendiriliyorsa aynı domain; veya `https://api.objektraeumung.at`). `http://localhost:4000` sadece aynı makineden site açıldığında işe yarar.
+  - **CORS**: Backend `CLIENT_ORIGIN` ile frontend origin’i kabul eder; production’da `CLIENT_ORIGIN=https://objektraeumung.at` (veya kullandığınız domain) olmalı.
+  - **Env**: Backend’de `BREVO_USER`, `BREVO_API_KEY`, `HCAPTCHA_SECRET_KEY` (hCaptcha kullanıyorsanız) tanımlı mı?
 
 ## Features
 

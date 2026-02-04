@@ -185,6 +185,26 @@ function validateBody(
 }
 
 export async function POST(request: Request) {
+  const internalUrl = process.env.INTERNAL_API_URL;
+  if (process.env.USE_BACKEND_PROXY === "true" && internalUrl) {
+    try {
+      const body = await request.json().catch(() => null);
+      const res = await fetch(`${internalUrl.replace(/\/$/, "")}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: body ? JSON.stringify(body) : "{}",
+      });
+      const data = await res.json().catch(() => ({}));
+      return NextResponse.json(data, { status: res.status });
+    } catch (err) {
+      console.error("Contact proxy error:", err);
+      return NextResponse.json(
+        { error: "Backend unreachable. Please try again later." },
+        { status: 502 }
+      );
+    }
+  }
+
   try {
     const body = await request.json().catch(() => null);
     const result = validateBody(body);

@@ -34,6 +34,8 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
+    env_file:
+      - ./server/.env
     environment:
       MONGODB_URI: mongodb://mongo:27017/objektraumung
       PORT: "4000"
@@ -49,6 +51,8 @@ services:
   # Frontend (Next.js) – dışarıya port 80’te açılır
   # ---------------------------------------------------------------------------
   # Frontend: container içinde 3000, dışarıya 80
+  # ÖNEMLİ: Siteyi sunucu IP ile açıyorsanız (http://SUNUCU_IP), bu build arg'ı
+  # http://SUNUCU_IP:4000 yapıp client'ı yeniden build edin; yoksa form "Error sending" verir.
   client:
     build:
       context: ./client
@@ -61,6 +65,8 @@ services:
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:4000
       NEXT_PUBLIC_SITE_URL: https://objektraeumung.at
+      USE_BACKEND_PROXY: "true"
+      INTERNAL_API_URL: http://server:4000
     ports:
       - "80:3000"
     networks:

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { MessageCircle } from "lucide-react";
-import { API_BASE, WHATSAPP_URL, HCAPTCHA_SITE_KEY } from "@/lib/constants";
+import { WHATSAPP_URL, HCAPTCHA_SITE_KEY } from "@/lib/constants";
 import {
   NAME_MAX,
   EMAIL_MAX,
@@ -40,6 +40,7 @@ export function ContactSection(props: Props) {
   const t = useTranslations("contact");
   const tServices = useTranslations("services");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaKey, setCaptchaKey] = useState(0);
   const useCaptcha = Boolean(HCAPTCHA_SITE_KEY);
@@ -70,8 +71,9 @@ export function ContactSection(props: Props) {
       };
 
       setStatus("loading");
+      setErrorMessage("");
       try {
-        const res = await fetch(`${API_BASE}/api/contact`, {
+        const res = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -83,10 +85,12 @@ export function ContactSection(props: Props) {
           resetCaptcha();
         } else {
           setStatus("error");
+          setErrorMessage((json.error as string) || t("error"));
           resetCaptcha();
         }
       } catch {
         setStatus("error");
+        setErrorMessage(t("error"));
         resetCaptcha();
       }
     },
@@ -263,8 +267,8 @@ export function ContactSection(props: Props) {
                 />
               </div>
             )}
-            {status === "error" && (
-              <p className="text-red-400 text-sm">{t("error")}</p>
+            {status === "error" && errorMessage && (
+              <p className="text-red-400 text-sm">{errorMessage}</p>
             )}
             <button
               type="submit"
