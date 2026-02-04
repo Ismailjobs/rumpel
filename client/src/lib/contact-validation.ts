@@ -51,7 +51,7 @@ export function validateEmail(value: string): { ok: boolean; error?: string } {
 export function validatePhone(value: string): { ok: boolean; error?: string } {
   const t = value.trim().replace(/\s+/g, " ").slice(0, PHONE_MAX);
   if (t.length < PHONE_MIN) return { ok: false, error: `Telefon mindestens ${PHONE_MIN} Zeichen.` };
-  if (!PHONE_REGEX.test(t)) return { ok: false, error: "Bitte gültige Telefonnummer eingeben (z. B. +43 660 123456)." };
+  if (!PHONE_REGEX.test(t)) return { ok: false, error: "Bitte gültige Telefonnummer eingeben (z. B. +43 681 811 309 62)." };
   return { ok: true };
 }
 

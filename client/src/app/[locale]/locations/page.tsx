@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 type Props = { params: { locale: string } };
 
 export function generateMetadata({ params: { locale } }: Props) {
-  const isDe = locale === "de";
+  const isDe = locale === "at";
   return {
     title: isDe ? "Standorte | objekträumung" : "Locations | objekträumung",
     description: isDe
@@ -29,7 +29,7 @@ export default async function LocationsPage({ params }: Props) {
   if (!LOCATIONS_ENABLED) redirect("/");
   const t = await getTranslations("locations");
   const tNav = await getTranslations("nav");
-  const locale = params.locale as "de" | "en";
+  const locale = params.locale as "at" | "en";
   const stateNames = t.raw("stateNames") as Record<string, string>;
 
   const mostSearched = MOST_SEARCHED_SLUGS.map((slug) => getLocationBySlug(slug)).filter(Boolean) as NonNullable<ReturnType<typeof getLocationBySlug>>[];
@@ -101,8 +101,8 @@ export default async function LocationsPage({ params }: Props) {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {mostSearched.map((loc) => {
-              const name = locale === "de" ? loc.nameDe : loc.nameEn;
-              const desc = locale === "de" ? loc.shortDescDe : loc.shortDescEn;
+              const name = locale === "at" ? loc.nameDe : loc.nameEn;
+              const desc = locale === "at" ? loc.shortDescDe : loc.shortDescEn;
               return (
                 <Link
                   key={loc.slug}
@@ -165,8 +165,8 @@ export default async function LocationsPage({ params }: Props) {
                     .filter((loc) => loc.slug !== stateKey)
                     .slice(0, 6)
                     .map((loc) => {
-                      const name = locale === "de" ? loc.nameDe : loc.nameEn;
-                      const desc = locale === "de" ? loc.shortDescDe : loc.shortDescEn;
+                      const name = locale === "at" ? loc.nameDe : loc.nameEn;
+                      const desc = locale === "at" ? loc.shortDescDe : loc.shortDescEn;
                       return (
                         <li key={loc.slug}>
                           <Link

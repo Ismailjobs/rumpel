@@ -20,7 +20,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }) {
-  const isDe = locale === "de";
+  const isDe = locale === "at";
   return {
     ...buildMetadata({
       title: isDe
@@ -31,7 +31,7 @@ export async function generateMetadata({
         : "objekträumung – Professional clearance, household clearance and bulky waste collection in Vienna and all of Austria. Free quote & WhatsApp.",
       keywords: isDe ? DEFAULT_KEYWORDS_DE : DEFAULT_KEYWORDS_EN,
       canonicalPath: "/",
-      locale: locale as "de" | "en",
+      locale: locale as "at" | "en",
     }),
     icons: { icon: "/icon.ico" },
   };
@@ -39,7 +39,7 @@ export async function generateMetadata({
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = params;
-  if (!routing.locales.includes(locale as "de" | "en")) notFound();
+  if (!routing.locales.includes(locale as "at" | "en")) notFound();
   unstable_setRequestLocale(locale);
 
   const messages = await getMessages();

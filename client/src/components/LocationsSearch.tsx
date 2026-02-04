@@ -31,7 +31,7 @@ export function LocationsSearch({
   const [focused, setFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const index = getSearchIndex(locale === "de" ? "de" : "en");
+  const index = getSearchIndex(locale === "at" ? "at" : "en");
 
   const hits: SearchHit[] =
     query.length >= MIN_QUERY_LENGTH

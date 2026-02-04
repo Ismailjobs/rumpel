@@ -9,7 +9,7 @@ const SAME_AS = [
 ];
 
 function buildLocalBusinessSchema(locale: string) {
-  const isDe = locale === "de";
+  const isDe = locale === "at";
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "MovingCompany"],

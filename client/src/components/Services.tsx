@@ -113,7 +113,7 @@ export function Services({ variant = "section" }: ServicesProps) {
               : "grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5"
           }
         >
-          {items.map(({ slug, titleKey, contentKey }, index) => {
+          {items.map(({ slug, titleKey, contentKey }) => {
             const Icon = getIcon(titleKey, contentKey);
             if (isPage) {
               return (
@@ -127,10 +127,7 @@ export function Services({ variant = "section" }: ServicesProps) {
                         <Icon className="text-navy group-hover:text-accent" size={28} strokeWidth={2} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <span className="text-xs font-bold text-navy/40 tabular-nums">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <h3 className="mt-0.5 font-bold text-navy text-lg group-hover:text-accent transition-colors">
+                        <h3 className="font-bold text-navy text-lg group-hover:text-accent transition-colors">
                           {t(`${titleKey}.title`)}
                         </h3>
                         <p className="mt-2 text-sm text-navy/65 line-clamp-2 leading-relaxed">

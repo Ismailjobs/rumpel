@@ -50,8 +50,8 @@ export async function generateMetadata({ params }: Props) {
   const { locale, slug } = params;
   const loc = getLocationBySlug(slug);
   if (!loc) return { title: "Standorte | objekträumung" };
-  const name = locale === "de" ? loc.nameDe : loc.nameEn;
-  const isDe = locale === "de";
+  const name = locale === "at" ? loc.nameDe : loc.nameEn;
+  const isDe = locale === "at";
   return {
     title: `${name} | objekträumung`,
     description: isDe
@@ -153,7 +153,7 @@ export default async function LocationDetailPage({ params }: Props) {
   const tNav = await getTranslations("nav");
   const stateNames = t.raw("stateNames") as Record<string, string>;
   const stateName = stateNames[loc.stateKey] ?? loc.stateKey;
-  const name = locale === "de" ? loc.nameDe : loc.nameEn;
+  const name = locale === "at" ? loc.nameDe : loc.nameEn;
   const body = t("detailBody", { region: name });
 
   return (
@@ -210,8 +210,8 @@ export default async function LocationDetailPage({ params }: Props) {
         </p>
         {slug === loc.stateKey && (() => {
           const subLocations = getLocationsByState(loc.stateKey).filter((l) => l.slug !== slug);
-          const nameKey = locale === "de" ? "nameDe" : "nameEn";
-          const descKey = locale === "de" ? "shortDescDe" : "shortDescEn";
+          const nameKey = locale === "at" ? "nameDe" : "nameEn";
+          const descKey = locale === "at" ? "shortDescDe" : "shortDescEn";
           if (subLocations.length === 0) return null;
           return (
             <section className="mt-10">

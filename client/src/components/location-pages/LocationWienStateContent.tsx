@@ -13,7 +13,7 @@ export async function LocationWienStateContent({ locale }: Props) {
   const tLoc = await getTranslations("locations");
 
   const districts = WIEN_DISTRICT_SLUGS.map((slug) => getLocationBySlug(slug)).filter((loc): loc is LocationItem => loc != null);
-  const nameKey = locale === "de" ? "nameDe" : "nameEn";
+  const nameKey = locale === "at" ? "nameDe" : "nameEn";
 
   return (
     <div className="min-h-screen bg-white">
@@ -150,9 +150,9 @@ export async function LocationWienStateContent({ locale }: Props) {
                   <span className="mt-1 font-semibold text-navy group-hover:text-accent transition-colors">
                     {loc[nameKey]}
                   </span>
-                  {(locale === "de" ? loc.shortDescDe : loc.shortDescEn) && (
+                  {(locale === "at" ? loc.shortDescDe : loc.shortDescEn) && (
                     <span className="mt-2 text-sm text-navy/60 line-clamp-2">
-                      {locale === "de" ? loc.shortDescDe : loc.shortDescEn}
+                      {locale === "at" ? loc.shortDescDe : loc.shortDescEn}
                     </span>
                   )}
                   <span className="mt-3 inline-flex items-center gap-1 text-accent font-semibold text-sm group-hover:underline">

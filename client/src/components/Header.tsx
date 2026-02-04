@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Home } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_URL } from "@/lib/constants";
 import { routing } from "@/i18n/routing";
@@ -52,9 +52,22 @@ export function Header() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-18">
         <div className="shrink-0 flex items-center min-w-0">
+          <Link
+            href="/"
+            aria-label={t("home")}
+            className={`inline-flex items-center justify-center p-1 transition ${
+              isActive("/") ? "text-accent" : "text-white/90 hover:text-accent"
+            }`}
+            onClick={() => setOpen(false)}
+          >
+            <Home size={28} strokeWidth={2} />
+          </Link>
+        </div>
+
+        <div className="md:hidden flex-1 flex items-center justify-center min-w-0 pl-2">
           <a
             href={`tel:${PHONE_LINK}`}
-            className="md:hidden inline-flex items-center gap-2 text-white font-medium text-sm hover:text-accent transition"
+            className="inline-flex items-center gap-2 text-white font-medium text-sm whitespace-nowrap hover:text-accent transition -translate-x-2"
           >
             <Phone size={18} />
             {t("callNow")}
@@ -151,7 +164,7 @@ export function Header() {
                       : "bg-white/10 text-white hover:bg-white/20"
                   }`}
                 >
-                  {loc === "de" ? t("langDe") : t("langEn")}
+                  {loc === "at" ? "AT" : "EN"}
                 </a>
               );
             })}
@@ -181,7 +194,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-navy border-t border-white/10"
+            className="md:hidden bg-navy border-t border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             <nav className="px-4 py-4 flex flex-col gap-3">
               <Link href="/" onClick={() => setOpen(false)} className="text-white/90 hover:text-accent font-medium py-2">
@@ -258,7 +271,7 @@ export function Header() {
                           : "bg-white/10 text-white border border-white/20"
                       }`}
                     >
-                      {loc === "de" ? "DE" : "EN"}
+                      {loc === "at" ? "AT" : "EN"}
                     </a>
                   );
                 })}

@@ -10,7 +10,7 @@ import { ServicesPageGallery } from "@/components/ServicesPageGallery";
 type Props = { params: { locale: string } };
 
 export function generateMetadata({ params: { locale } }: Props) {
-  const isDe = locale === "de";
+  const isDe = locale === "at";
   return buildMetadata({
     title: isDe ? "Leistungen | objekträumung" : "Services | objekträumung",
     description: isDe
@@ -18,7 +18,7 @@ export function generateMetadata({ params: { locale } }: Props) {
       : "Household clearance, apartment clearance, cellar & attic clearance, bulky waste, office clearance. Fixed price with value balancing, free inspection.",
     keywords: isDe ? DEFAULT_KEYWORDS_DE : DEFAULT_KEYWORDS_EN,
     canonicalPath: "/services",
-    locale: locale as "de" | "en",
+    locale: locale as "at" | "en",
   });
 }
 

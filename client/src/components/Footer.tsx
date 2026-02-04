@@ -13,83 +13,65 @@ export function Footer() {
     <footer className="bg-navy text-white mt-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          {/* 1) Marke / Objekträumung */}
+          <div>
             <h3 className="font-bold text-lg text-white">{t("tagline")}</h3>
             <p className="mt-3 text-sm text-white/70 leading-relaxed max-w-xs">
               {t("shortDesc")}
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* 2) Navigation */}
           <div>
             <h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-4">
               {t("navTitle")}
             </h4>
             <nav className="flex flex-col gap-3">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
+              <Link href="/" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
                 <ArrowRight size={14} className="opacity-70" />
                 {tNav("home")}
               </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
+              <Link href="/services" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
                 <ArrowRight size={14} className="opacity-70" />
                 {tNav("services")}
               </Link>
-              <Link
-                href="/referenzen"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
+              <Link href="/referenzen" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
                 <ArrowRight size={14} className="opacity-70" />
                 {tNav("referenzen")}
               </Link>
-              <Link
-                href="/ueberblick"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
+              <Link href="/ueberblick" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
                 <ArrowRight size={14} className="opacity-70" />
                 {tNav("ueberblick")}
               </Link>
-              <Link
-                href="/prices"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
+              <Link href="/prices" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
                 <ArrowRight size={14} className="opacity-70" />
                 {tNav("prices")}
               </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
+              <Link href="/about" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
                 <ArrowRight size={14} className="opacity-70" />
                 {tNav("about")}
               </Link>
-              <Link
-                href="/impressum"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
-                <ArrowRight size={14} className="opacity-70" />
-                {tNav("impressum")}
-              </Link>
-              {/* Locations geçici kapalı – ileride tekrar açılacak
-              <Link href="/locations" ...>{tNav("locations")}</Link>
-              */}
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
-              >
+              <Link href="/#contact" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
                 <ArrowRight size={14} className="opacity-70" />
                 {tNav("contact")}
               </Link>
             </nav>
           </div>
 
-          {/* Contact */}
+          {/* 3) Rechtliches */}
+          <div>
+            <h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-4">
+              {tNav("sectionLegal")}
+            </h4>
+            <nav className="flex flex-col gap-3">
+              <Link href="/impressum" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors">
+                <ArrowRight size={14} className="opacity-70" />
+                {tNav("impressum")}
+              </Link>
+            </nav>
+          </div>
+
+          {/* 4) Kontakt */}
           <div>
             <h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-4">
               {t("contactTitle")}

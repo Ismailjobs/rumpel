@@ -102,9 +102,9 @@ export function getAllSlugs(): string[] {
 }
 
 /** Suchindex: alle durchsuchbaren Texte pro Locale */
-export function getSearchIndex(locale: "de" | "en") {
-  const nameKey = locale === "de" ? "nameDe" : "nameEn";
-  const descKey = locale === "de" ? "shortDescDe" : "shortDescEn";
+export function getSearchIndex(locale: "at" | "en") {
+  const nameKey = locale === "at" ? "nameDe" : "nameEn";
+  const descKey = locale === "at" ? "shortDescDe" : "shortDescEn";
   return LOCATIONS.map((loc) => ({
     slug: loc.slug,
     title: loc[nameKey],

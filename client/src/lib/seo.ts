@@ -8,8 +8,8 @@ export type SEOProps = {
   keywords?: string | string[];
   /** Path without locale, e.g. "/" or "/services/haushaltsaufloesung". Canonical will be SITE_URL + locale + path. */
   canonicalPath?: string;
-  /** Locale (de | en) for canonical and og:locale */
-  locale?: "de" | "en";
+  /** Locale (at | en) for canonical and og:locale */
+  locale?: "at" | "en";
   /** Optional OG image path (relative to SITE_URL) or full URL */
   image?: string;
   /** If true, noindex this page */
@@ -32,7 +32,7 @@ export function buildMetadata({
   description,
   keywords,
   canonicalPath = "/",
-  locale = "de",
+  locale = "at",
   image,
   noIndex = false,
 }: SEOProps): Metadata {
@@ -50,7 +50,7 @@ export function buildMetadata({
     alternates: { canonical: canonicalUrl },
     openGraph: {
       type: "website",
-      locale: locale === "de" ? "de_AT" : "en_US",
+      locale: locale === "at" ? "de_AT" : "en_US",
       url: canonicalUrl,
       siteName: "objekträumung",
       title,

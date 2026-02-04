@@ -7,7 +7,7 @@ import { ContactSection } from "@/components/ContactSection";
 type Props = { params: { locale: string } };
 
 export function generateMetadata({ params: { locale } }: Props) {
-  const isDe = locale === "de";
+  const isDe = locale === "at";
   return {
     title: isDe ? "Referenzen | objekträumung" : "References | objekträumung",
     description: isDe

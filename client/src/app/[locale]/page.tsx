@@ -13,17 +13,17 @@ import { DistrictsSeo } from "@/components/DistrictsSeo";
 type Props = { params: { locale: string } };
 
 export async function generateMetadata({ params }: Props) {
-  const locale = params.locale as "de" | "en";
-  const title = locale === "de"
-    ? "objekträumung | Wohnungsräumung Wien, Entrümpelung & Antiquitäten Ankauf"
-    : "objekträumung | Apartment Clearance Vienna, Clearance & Antique Purchase";
-  const description = locale === "de"
+  const locale = params.locale as "at" | "en";
+  const title = locale === "at"
+    ? "Objekträumung | Wohnungsräumung Wien, Entrümpelung & Antiquitäten Ankauf"
+    : "Objekträumung | Apartment Clearance Vienna, Clearance & Antique Purchase";
+  const description = locale === "at"
     ? "Wohnungsräumung Wien, Entrümpelung und Antiquitäten Ankauf aus einer Hand. Professioneller Umzugsservice, Haushaltsauflösung und Sperrmüllabholung in Wien & Niederösterreich. Kostenloses Angebot."
     : "Apartment clearance Vienna, clearance and antique purchase in one. Professional moving service, household clearance and bulky waste collection in Vienna & Lower Austria. Free quote.";
   return buildMetadata({
     title,
     description,
-    keywords: locale === "de" ? HOMEPAGE_KEYWORDS_DE : HOMEPAGE_KEYWORDS_EN,
+    keywords: locale === "at" ? HOMEPAGE_KEYWORDS_DE : HOMEPAGE_KEYWORDS_EN,
     canonicalPath: "/",
     locale,
   });

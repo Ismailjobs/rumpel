@@ -180,9 +180,9 @@ export function ContactForm() {
             minLength={PHONE_MIN}
             maxLength={PHONE_MAX}
             pattern="\+?[\d\s\-()]{7,24}"
-            title="z. B. +43 660 123456"
+            title="z. B. +43 681 811 309 62"
             className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-            placeholder="+43 660 123456"
+            placeholder="+43 681 811 309 62"
           />
           <p className="mt-0.5 text-xs text-gray-500">Max. {PHONE_MAX}</p>
         </div>

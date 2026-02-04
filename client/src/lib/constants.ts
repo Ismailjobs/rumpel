@@ -1,12 +1,12 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://objektraeumung.at";
 
-/** WhatsApp & İletişim: +43 660 4706098 (wa.me format: 436604706098) */
-export const WHATSAPP_NUMBER = "436604706098";
+/** WhatsApp & İletişim: +43 681 811 309 62 (wa.me format: 4368181130962) */
+export const WHATSAPP_NUMBER = "4368181130962";
 export const WHATSAPP_TEXT = "Anfrage: Räumungs- und Entrümpelungsservice";
-export const PHONE_DISPLAY = "+43 660 4706098";
+export const PHONE_DISPLAY = "+43 681 811 309 62";
 export const PHONE_LINK = PHONE_DISPLAY.replace(/\s/g, "");
 /** Canonical phone for SEO / JSON-LD */
-export const PHONE_CANONICAL = process.env.NEXT_PUBLIC_PHONE_CANONICAL ?? "+43 660 4706098";
+export const PHONE_CANONICAL = process.env.NEXT_PUBLIC_PHONE_CANONICAL ?? "+43 681 811 309 62";
 export const PHONE_CANONICAL_LINK = PHONE_CANONICAL.replace(/\s/g, "");
 
 export const EMAIL = process.env.NEXT_PUBLIC_EMAIL ?? "office@objektraeumung.at";

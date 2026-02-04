@@ -7,7 +7,7 @@ import { UeberblickContent } from "@/components/UeberblickContent";
 type Props = { params: { locale: string } };
 
 export function generateMetadata({ params: { locale } }: Props) {
-  const isDe = locale === "de";
+  const isDe = locale === "at";
   return {
     title: isDe
       ? "Haushaltsauflösung Wien: Überblick | objekträumung"
