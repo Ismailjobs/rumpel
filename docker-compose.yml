@@ -36,29 +36,30 @@ services:
         condition: service_healthy
     environment:
       MONGODB_URI: mongodb://mongo:27017/objektraumung
-      PORT: "5000"
+      PORT: "4000"
       # Production: set CLIENT_ORIGIN to your frontend URL (e.g. https://objektraeumung.at)
       # Frontend dışarıda port 80’te açıldığı için local’de http://localhost
       CLIENT_ORIGIN: http://localhost
     ports:
-      - "5000:5000"
+      - "4000:4000"
     networks:
       - app
 
   # ---------------------------------------------------------------------------
   # Frontend (Next.js) – dışarıya port 80’te açılır
   # ---------------------------------------------------------------------------
+  # Frontend: container içinde 3000, dışarıya 80
   client:
     build:
       context: ./client
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: http://localhost:5000
+        NEXT_PUBLIC_API_URL: http://localhost:4000
         NEXT_PUBLIC_SITE_URL: https://objektraeumung.at
     container_name: client
     restart: unless-stopped
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:5000
+      NEXT_PUBLIC_API_URL: http://localhost:4000
       NEXT_PUBLIC_SITE_URL: https://objektraeumung.at
     ports:
       - "80:3000"
