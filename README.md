@@ -93,6 +93,8 @@ From project root: `npm run build`
 
 4. **Docker**
 
+   `docker-compose up --build` ile frontend **port 80**’te dışarıya açılır (80:3000). Site adresi: `http://sunucu-ip/`.
+
    `docker-compose.yml` production için:
 
    - `server` → `CLIENT_ORIGIN=https://objektraeumung.at`
