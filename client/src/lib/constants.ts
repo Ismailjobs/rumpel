@@ -1,4 +1,6 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://objektraeumung.at";
+const _SITE_URL_RAW = process.env.NEXT_PUBLIC_SITE_URL ?? "https://objektraeumung.at";
+/** Canonical base URL: always https:// (never https:/), no trailing slash. Use for sitemap, robots, canonical. */
+export const SITE_URL = _SITE_URL_RAW.replace(/^https:\/+/, "https://").replace(/\/+$/, "");
 
 /** WhatsApp & İletişim: +43 681 811 309 62 (wa.me format: 4368181130962) */
 export const WHATSAPP_NUMBER = "4368181130962";

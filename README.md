@@ -107,7 +107,17 @@ From project root: `npm run build`
    docker-compose down
    docker-compose up -d --build
    ```
-   Hata sürerse client image’ı da silin: `docker rmi rumpel_client 2>/dev/null; docker-compose up -d --build` (image adı `docker images` ile kontrol edin). **Çözüm 2** – Docker Compose V2 kullanın: `docker compose up -d --build` (tire yok).
+   Hata sürerse client image’ı da silin: `docker rmi rumpel_client 2>/dev/null; docker-compose up -d --build`    (image adı `docker images` ile kontrol edin). **Çözüm 2** – Docker Compose V2 kullanın: `docker compose up -d --build` (tire yok).
+
+   **Sunucuda kod güncellemesi (GitHub'dan çekince değişiklikler görünmüyorsa):** Next.js, Docker **build** sırasında derlenir. Sadece `git pull` + `docker compose up -d` yeterli değildir; **imajı yeniden build etmeniz gerekir**. Sunucuda sırayla:
+   ```bash
+   cd /path/to/RUMPEL
+   git pull
+   docker compose down
+   docker compose build --no-cache client
+   docker compose up -d
+   ```
+   (Veya tek satır: `docker compose up -d --build` — client ve server imajları yeniden build edilir.) Build bitene kadar bekleyin; ardından tarayıcıda **Ctrl+Shift+R** (sert yenile) ile cache'i atlayıp kontrol edin.
 
 5. **Kontrol**
 

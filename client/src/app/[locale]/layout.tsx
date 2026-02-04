@@ -24,11 +24,11 @@ export async function generateMetadata({
   return {
     ...buildMetadata({
       title: isDe
-        ? "objekträumung | Räumung Wien & Österreich – Kostenloses Angebot"
-        : "objekträumung | Clearance Vienna & Austria – Free Quote",
+        ? "Objekträumung | Räumung Wien & Österreich – Kostenloses Angebot"
+        : "Objekträumung | Clearance Vienna & Austria – Free Quote",
       description: isDe
-        ? "objekträumung – Professionelle Räumung, Haushaltsauflösung und Sperrmüllabholung in Wien und ganz Österreich. Kostenloses Angebot & WhatsApp."
-        : "objekträumung – Professional clearance, household clearance and bulky waste collection in Vienna and all of Austria. Free quote & WhatsApp.",
+        ? "Objekträumung – Professionelle Räumung, Haushaltsauflösung und Sperrmüllabholung in Wien und ganz Österreich. Kostenloses Angebot & WhatsApp."
+        : "Objekträumung – Professional clearance, household clearance and bulky waste collection in Vienna and all of Austria. Free quote & WhatsApp.",
       keywords: isDe ? DEFAULT_KEYWORDS_DE : DEFAULT_KEYWORDS_EN,
       canonicalPath: "/",
       locale: locale as "at" | "en",

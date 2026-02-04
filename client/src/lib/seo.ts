@@ -52,7 +52,7 @@ export function buildMetadata({
       type: "website",
       locale: locale === "at" ? "de_AT" : "en_US",
       url: canonicalUrl,
-      siteName: "objekträumung",
+      siteName: "Objekträumung",
       title,
       description,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
