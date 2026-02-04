@@ -60,7 +60,7 @@ services:
       NEXT_PUBLIC_API_URL: http://localhost:5000
       NEXT_PUBLIC_SITE_URL: https://objektraeumung.at
     ports:
-      - "3000:3000"
+      - "80:3000"
     networks:
       - app
 
