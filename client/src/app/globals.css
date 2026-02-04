@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #353535;
+  --accent: #3c6e71;
+  --white: #ffffff;
+  --gray-light: #d9d9d9;
+}
+
+body {
+  @apply bg-white text-navy antialiased;
+}
+
+/* Space for mobile floating buttons (phone left, WhatsApp right) */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 1rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Service dropdown: dark background so option text is visible */
+select#service option {
+  background: var(--navy);
+  color: #fff;
+}
+
+/* Reviews carousel: infinite right-to-left scroll */
+@keyframes reviews-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-reviews-scroll {
+  animation: reviews-scroll 45s linear infinite;
+}

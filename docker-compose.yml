@@ -1,0 +1,72 @@
+# RUMPEL / objekträumung – Production-ready Docker Compose
+# Kullanım: docker-compose up --build
+
+services:
+  # ---------------------------------------------------------------------------
+  # MongoDB
+  # ---------------------------------------------------------------------------
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ---------------------------------------------------------------------------
+  # Backend (Node.js / Express)
+  # ---------------------------------------------------------------------------
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/objektraumung
+      PORT: "5000"
+      # Production: set CLIENT_ORIGIN to your frontend URL (e.g. https://objektraeumung.at)
+      CLIENT_ORIGIN: http://localhost:3000
+    ports:
+      - "5000:5000"
+    networks:
+      - app
+
+  # ---------------------------------------------------------------------------
+  # Frontend (Next.js)
+  # ---------------------------------------------------------------------------
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:5000
+        NEXT_PUBLIC_SITE_URL: https://objektraeumung.at
+    container_name: client
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000
+      NEXT_PUBLIC_SITE_URL: https://objektraeumung.at
+    ports:
+      - "3000:3000"
+    networks:
+      - app
+
+volumes:
+  mongo_data:
+
+networks:
+  app:
+    driver: bridge
