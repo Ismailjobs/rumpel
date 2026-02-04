@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import {
   NAME_MIN,
@@ -34,8 +34,13 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const captchaRef = useRef<import("@hcaptcha/react-hcaptcha").HCaptcha>(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
   const useCaptcha = Boolean(HCAPTCHA_SITE_KEY);
+
+  const resetCaptcha = useCallback(() => {
+    setCaptchaToken(null);
+    setCaptchaKey((k) => k + 1);
+  }, []);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -93,22 +98,19 @@ export function ContactForm() {
         if (res.ok && json.success) {
           setStatus("success");
           form.reset();
-          setCaptchaToken(null);
-          captchaRef.current?.resetCaptcha();
+          resetCaptcha();
         } else {
           setStatus("error");
           setErrorMessage((json.error as string) || "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.");
-          setCaptchaToken(null);
-          captchaRef.current?.resetCaptcha();
+          resetCaptcha();
         }
       } catch {
         setStatus("error");
         setErrorMessage("Netzwerkfehler. Bitte versuchen Sie es später erneut.");
-        setCaptchaToken(null);
-        captchaRef.current?.resetCaptcha();
+        resetCaptcha();
       }
     },
-    [useCaptcha, captchaToken]
+    [useCaptcha, captchaToken, resetCaptcha]
   );
 
   if (status === "success") {
@@ -231,7 +233,7 @@ export function ContactForm() {
         {useCaptcha && (
           <div className="flex justify-start">
             <HCaptcha
-              ref={captchaRef}
+              key={captchaKey}
               sitekey={HCAPTCHA_SITE_KEY}
               onVerify={setCaptchaToken}
               onExpire={() => setCaptchaToken(null)}
