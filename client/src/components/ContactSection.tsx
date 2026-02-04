@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { MessageCircle } from "lucide-react";
 import { API_BASE, WHATSAPP_URL, HCAPTCHA_SITE_KEY } from "@/lib/constants";
@@ -41,8 +41,13 @@ export function ContactSection(props: Props) {
   const tServices = useTranslations("services");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const captchaRef = useRef<import("@hcaptcha/react-hcaptcha").HCaptcha>(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
   const useCaptcha = Boolean(HCAPTCHA_SITE_KEY);
+
+  const resetCaptcha = useCallback(() => {
+    setCaptchaToken(null);
+    setCaptchaKey((k) => k + 1);
+  }, []);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,20 +80,17 @@ export function ContactSection(props: Props) {
         if (res.ok && json.success) {
           setStatus("success");
           form.reset();
-          setCaptchaToken(null);
-          captchaRef.current?.resetCaptcha();
+          resetCaptcha();
         } else {
           setStatus("error");
-          setCaptchaToken(null);
-          captchaRef.current?.resetCaptcha();
+          resetCaptcha();
         }
       } catch {
         setStatus("error");
-        setCaptchaToken(null);
-        captchaRef.current?.resetCaptcha();
+        resetCaptcha();
       }
     },
-    [useCaptcha, captchaToken]
+    [useCaptcha, captchaToken, resetCaptcha]
   );
 
   return (
@@ -252,7 +254,7 @@ export function ContactSection(props: Props) {
             {useCaptcha && (
               <div className="flex justify-center md:justify-start">
                 <HCaptcha
-                  ref={captchaRef}
+                  key={captchaKey}
                   sitekey={HCAPTCHA_SITE_KEY}
                   onVerify={(token) => setCaptchaToken(token)}
                   onExpire={() => setCaptchaToken(null)}
