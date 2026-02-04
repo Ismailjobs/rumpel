@@ -148,7 +148,7 @@ export function ContactSection(props: Props) {
           >
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-1">
-                {t("name")}
+                {t("name")} *
               </label>
               <input
                 id="name"
@@ -164,7 +164,7 @@ export function ContactSection(props: Props) {
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-1">
-                {t("email")}
+                {t("email")} *
               </label>
               <input
                 id="email"
@@ -179,7 +179,7 @@ export function ContactSection(props: Props) {
             </div>
             <div>
               <label htmlFor="phone" className="block text-sm font-medium mb-1">
-                {t("phone")}
+                {t("phone")} *
               </label>
               <input
                 id="phone"
@@ -223,7 +223,7 @@ export function ContactSection(props: Props) {
             </div>
             <div>
               <label htmlFor="service" className="block text-sm font-medium mb-1">
-                {t("service")}
+                {t("service")} *
               </label>
               <select
                 id="service"
@@ -241,7 +241,7 @@ export function ContactSection(props: Props) {
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium mb-1">
-                {t("message")}
+                {t("message")} *
               </label>
               <textarea
                 id="message"
