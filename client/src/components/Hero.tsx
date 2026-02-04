@@ -78,15 +78,16 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-[0.02em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] [text-shadow:0_1px_0_rgba(255,255,255,0.1)]"
+            className="font-extrabold leading-[1.08] tracking-[0.02em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] [text-shadow:0_1px_0_rgba(255,255,255,0.1)]"
           >
-            {t("title")}
+            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl">{t("titleLine1")}</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 text-white/85">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-lg sm:text-xl text-white/85 max-w-xl leading-relaxed"
+            className="mt-10 text-lg sm:text-xl text-white/85 max-w-xl leading-relaxed"
           >
             {t("subtitle")}
           </motion.p>

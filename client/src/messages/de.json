@@ -24,7 +24,9 @@
     }
   },
   "hero": {
-    "title": "Objekträumung – Räumung Wien & Österreich",
+    "title": "Objekträumung Räumung Wien & Österreich",
+    "titleLine1": "Objekträumung",
+    "titleLine2": "Räumung Wien & Österreich",
     "subtitle": "Räumung in Wien & Österreich – Haushaltsauflösung, Wohnungsräumung, Sperrmüllabholung. Schnell, zuverlässig, fair.",
     "ctaOffer": "Kostenloses Angebot",
     "ctaWhatsApp": "WhatsApp Chat",
