@@ -7,6 +7,7 @@ import { DEFAULT_KEYWORDS_DE, DEFAULT_KEYWORDS_EN } from "@/lib/seo-keywords";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCta } from "@/components/FloatingCta";
+import { CookieBanner } from "@/components/CookieBanner";
 import { JsonLd } from "@/components/JsonLd";
 
 type Props = { children: React.ReactNode; params: { locale: string } };
@@ -52,6 +53,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingCta />
+        <CookieBanner />
       </NextIntlClientProvider>
     </>
   );
