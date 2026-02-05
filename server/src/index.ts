@@ -7,6 +7,7 @@ import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
 import { contactRouter } from "./routes/contact.js";
+import { accessRouter } from "./routes/access.js";
 import { connectDb } from "./db.js";
 
 const app = express();
@@ -26,8 +27,8 @@ app.use(
   })
 );
 app.use(express.json());
+app.use("/api", accessRouter);
 app.use(limiter);
-
 app.use("/api", contactRouter);
 
 app.get("/api/health", (_req, res) => {
